@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            position: relative;
         }
 
         .container {
@@ -20,10 +21,24 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
             color: #333333;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 170%; /* Adjusted to bring the logo lower */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            width: 400px;
+            height: 400px; /* Ensure the watermark is square */
+            border-radius: 50%; /* Make it circular */
+            z-index: 0;
         }
 
         .teams, .matches {
@@ -75,6 +90,20 @@
             padding: 10px;
             font-size: 16px;
             margin-right: 10px;
+        }
+
+        .input-container input, button {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+        }
+
+        .input-container input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #f4f4f9, #ffffff);
         }
     </style>
     <script>
@@ -136,5 +165,6 @@
         <h2>Matchups</h2>
         <ul class="matches" id="matches"></ul>
     </div>
+    <img src="logo.png" alt="Watermark" class="watermark">
 </body>
 </html>
