@@ -131,8 +131,14 @@
             const matchesContainer = document.getElementById('matches');
             matchesContainer.innerHTML = '';
             let tempTeams = [...teams];
-            const directQualifierIndex = Math.floor(Math.random() * tempTeams.length);
-            const directQualifier = tempTeams.splice(directQualifierIndex, 1)[0];
+
+            if (tempTeams.length % 2 !== 0) {
+                const directQualifierIndex = Math.floor(Math.random() * tempTeams.length);
+                const directQualifier = tempTeams.splice(directQualifierIndex, 1)[0];
+                const qualifier = document.createElement('p');
+                qualifier.textContent = `${directQualifier} directly qualifies to the next round.`;
+                matchesContainer.appendChild(qualifier);
+            }
 
             while (tempTeams.length >= 2) {
                 const team1 = tempTeams.splice(Math.floor(Math.random() * tempTeams.length), 1);
@@ -141,17 +147,13 @@
                 match.textContent = `${team1} vs ${team2}`;
                 matchesContainer.appendChild(match);
             }
-
-            const qualifier = document.createElement('p');
-            qualifier.textContent = `${directQualifier} directly qualifies to the next round.`;
-            matchesContainer.appendChild(qualifier);
         }
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Cricket Team Picker</h1>
-        <p>Enter the participating teams below. One team directly qualifies to the next round due to an odd number of teams.</p>
+        <p>Enter the participating teams below. One team directly qualifies to the next round if there is an odd number of teams.</p>
 
         <div class="input-container">
             <input type="text" id="teamInput" placeholder="Enter team name">
